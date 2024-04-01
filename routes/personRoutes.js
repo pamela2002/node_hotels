@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Person = require('./../models/Person');
-const { jwtAuthMiddleware, generateToken } = require('./../jwt');
-
+const {jwtAuthMiddleware,  generateToken } = require('./../jwt');
 
 
 router.post('/signup', async (req, res) => {
@@ -62,7 +61,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Profile route
-router.get('/profile', jwtAuthMiddleware, async (req, res) => {
+router.get('/profile',jwtAuthMiddleware,  async (req, res) => {
     try {
         const userData = req.user;
         console.log("User Data: ", userData);
@@ -79,7 +78,7 @@ router.get('/profile', jwtAuthMiddleware, async (req, res) => {
 
 
 // GET method to get the person
-router.get('/', jwtAuthMiddleware, async (req, res) =>{
+router.get('/',jwtAuthMiddleware, async (req, res) =>{
     try{
         const data = await Person.find();
         console.log('data fetched');
